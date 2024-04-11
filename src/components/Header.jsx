@@ -1,9 +1,11 @@
-export default function Header({children}) {
+import Counter from "./Counter";
+import Logo from "./Logo";
+
+export default function Header() {
     return (
         <header>
-            {
-                children
-            }
+            <Logo />
+            <Counter />
         </header>
     );
 }
