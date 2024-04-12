@@ -1,13 +1,18 @@
+import { useItemsStore } from "../stores/itemsStore";
 import { Button } from "./Button";
-import { useItemsContext } from "../hooks";
 
 export default function ButtonGroup() {
-    const { handleMarkAllAsComplete, handleMarkAllAsIncomplete, handleRemoveAllItems, handleResetToInitial } = useItemsContext();
+
+    const markAllAsComplete = useItemsStore(state => state.markAllAsComplete);
+    const markAllAsIncomplete = useItemsStore(state => state.markAllAsIncomplete);
+    const resetToInitial = useItemsStore(state => state.resetToInitial);
+    const removeAllItems = useItemsStore(state => state.removeAllItems);
+
     const secondaryButtons = [
-        { id: crypto.randomUUID(), text: 'Mark all as complete', onClick: handleMarkAllAsComplete },
-        { id: crypto.randomUUID(), text: 'Mark all as incomplete', onClick: handleMarkAllAsIncomplete },
-        { id: crypto.randomUUID(), text: 'Reset to initial', onClick: handleResetToInitial },
-        { id: crypto.randomUUID(), text: 'Remove all items', onClick: handleRemoveAllItems },
+        { id: crypto.randomUUID(), text: 'Mark all as complete', onClick: markAllAsComplete },
+        { id: crypto.randomUUID(), text: 'Mark all as incomplete', onClick: markAllAsIncomplete },
+        { id: crypto.randomUUID(), text: 'Reset to initial', onClick: resetToInitial },
+        { id: crypto.randomUUID(), text: 'Remove all items', onClick: removeAllItems },
     ];
     return (
         <section className="button-group">
